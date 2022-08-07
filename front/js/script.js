@@ -35,4 +35,9 @@ fetch("http://localhost:3000/api/products")
 	// Création d'un message d'erreur.
 	.catch((err) => {
 		console.error("err", err);
+		const node = document.getElementById("items");
+		let newAlertH2 = document.createElement("h2");
+		newAlertH2.textContent =
+			"Erreur de communication avec le serveur. Merci de contacter : support@name.com";
+		node.append(newAlertH2);
 	});
