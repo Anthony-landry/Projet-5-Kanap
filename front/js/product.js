@@ -24,6 +24,14 @@ function getArticleData(articleId) {
 		})
 		.catch((err) => {
 			console.error("err", err);
+			// Si erreur de communication, la section article est cachée.
+			document.querySelector("article").style.display = "none";
+
+			// Création d'un <h2> poru afficher l'erreur.
+			let newAlertH2 = document.createElement("h2");
+			newAlertH2.textContent =
+				"Erreur de communication avec le serveur. Merci de contacter : support@name.com";
+			document.querySelector(".item").append(newAlertH2);
 		});
 }
 
@@ -48,3 +56,12 @@ function displayArticle(articleData) {
 		document.querySelector("select").append(option);
 	}
 }
+
+// 1° Écouter le click sur le bouton (ajouter au panier).
+document.querySelector("#addToCart").addEventListener("click", () => {
+	// je stock le retour de la fonction addData.
+	let product = getDataDict();
+	if (product.colors != "" && product.quantity != 0) {
+		storeData(product);
+	}
+});
