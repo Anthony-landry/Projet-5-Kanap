@@ -65,3 +65,21 @@ document.querySelector("#addToCart").addEventListener("click", () => {
 		storeData(product);
 	}
 });
+
+function storeData(productAddedToCart) {
+	// Création de la variable products pour le stockage des mes produits et caractéristiques.
+	let products = [];
+	let dataFromStorage = localStorage.getItem("panier"); // Je lui passe la key -> panier
+
+	// Si il y à déjà des produits d'enregistré dans le local storage.
+	if (dataFromStorage) {
+		products = JSON.parse(dataFromStorage);
+		// Si la donnée n'est pas présente.
+		// La donnée n'est pas présente dans product, celle-ci est ajoutée.
+		// Si il n'y a déjà de produit d'enregistré dans le local storage.
+	} else {
+		products = [productAddedToCart];
+	}
+	// Stocker la variable products (converti une valeur JS en chaine JSON).
+	localStorage.setItem("panier", JSON.stringify(products));
+}
